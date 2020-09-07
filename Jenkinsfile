@@ -26,10 +26,7 @@ pipeline {
             steps {
                 withSonarQubeEnv('sonardocker') {
 
-                     bat '''$SCANNER_HOMEC/Sonarqube/sonar-scanner-4.1.0.1829-windows/bin
-                                 -Dsonar.java.binaries=target/classes
-                                 -Dsonar.projectKey=sonar-coverage-example-java
-                                 -Dsonar.sources=src/main/java'''
+                     bat 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=ebe64c1ccc8d1f6c8f2f72dd59f7e12cd0b674d4'
 
                 }
             }
