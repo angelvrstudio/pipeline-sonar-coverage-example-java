@@ -23,7 +23,7 @@ pipeline {
                 withSonarQubeEnv('sonar-scanner') {
                     script {
                         def scannerHome = tool 'sonar-scanner'
-                        bat "${scannerHome}C:\Sonarqube\sonar-scanner-4.1.0.1829-windows\bin"
+                        bat "${scannerHome}C/Sonarqube/sonar-scanner-4.1.0.1829-windows/bin"
                     }
                 }
             }
