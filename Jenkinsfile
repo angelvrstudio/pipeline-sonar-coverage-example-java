@@ -1,33 +1,29 @@
 pipeline {
     agent any
     tools {
-        jdk 'jdk10'
-        maven 'M3'
+        maven 'apache-maven-3.5.0'
     }
 
-    environment {
-        JAVA_HOME = "${jdk}"
-    }
 
     stages {
-        stage('Prepare') {
+        stage('Compile Stage') {
             steps {
-                checkout scm
+                bat 'mvn clean compile'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn install'
+                bat 'mvn test'
             }
         }
 
-        stage('QA') {
+        stage('QA-Sonar') {
             steps {
-                withSonarQubeEnv('sonar') {
+                withSonarQubeEnv('sonar-scanner') {
                     script {
-                        def scannerHome = tool 'sonarqube-scanner'
-                        sh "${scannerHome}/bin/sonar-scanner"
+                        def scannerHome = tool 'sonar-scanner'
+                        bat "${scannerHome}C:\Sonarqube\sonar-scanner-4.1.0.1829-windows\bin"
                     }
                 }
             }
