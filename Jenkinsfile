@@ -19,12 +19,18 @@ pipeline {
         }
 
         stage('QA-Sonar') {
+
+          environment {
+            SCANNER_HOME = tool 'sonar-scanner'
+          }
             steps {
-                withSonarQubeEnv('sonar-scanner') {
-                    script {
-                        def scannerHome = tool 'sonar-scanner'
-                        bat "${scannerHome}C/Sonarqube/sonar-scanner-4.1.0.1829-windows/bin"
-                    }
+                withSonarQubeEnv('sonardocker') {
+
+                     bat '''$SCANNER_HOMEC/Sonarqube/sonar-scanner-4.1.0.1829-windows/bin
+                                 -Dsonar.java.binaries=target/classes
+                                 -Dsonar.projectKey=sonar-coverage-example-java
+                                 -Dsonar.sources=src/main/java'''
+
                 }
             }
         }
