@@ -6,9 +6,7 @@
    The ASF licenses this file to You under the Apache License, Version 2.0
    (the "License"); you may not use this file except in compliance with
    the License.  You may obtain a copy of the License at
-
         http://www.apache.org/licenses/LICENSE-2.0
-
    Unless required by applicable law or agreed to in writing, software
    distributed under the License is distributed on an "AS IS" BASIS,
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -40,20 +38,21 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- allowed values: R7, 1.0, 1.5, 2.0 or none -->
         <wtp.version>none</wtp.version>
-        <!--  introduciendo jacoco para cobertura de sonar  -->
+
         <jacoco.version>0.8.3</jacoco.version>
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-        <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.jacoco.reportPaths>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPaths>
         <sonar.language>java</sonar.language>
+
     </properties>
 
     <scm>
         <connection>scm:git:git@github.com:pingunaut/wicket-pwnedpasswords-validator.git</connection>
         <developerConnection>scm:git:git@github.com:pingunaut/wicket-pwnedpasswords-validator.git</developerConnection>
         <url>https://github.com/pingunaut/wicket-pwnedpasswords-validator.git</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <developers>
         <developer>
@@ -167,48 +166,6 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.1</version>
-                <executions>
-                    <execution>
-                        <id>jacoco-initialize</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>jacoco-report</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>post-unit-test</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                        <configuration>
-                            <dataFile>target/jacoco.exec</dataFile>
-                            <outputDirectory>target/jacoco-ut</outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-                <configuration>
-                    <propertyName>surefireArgLine</propertyName>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.21.0</version>
-                <configuration>
-                    <argLine>${surefireArgLine}</argLine>
-                </configuration>
-            </plugin>
-            <!--  introduciendo plugin de jacoco  -->
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${jacoco.version}</version>
                 <configuration>
                     <skip>${maven.test.skip}</skip>
@@ -236,6 +193,13 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.21.0</version>
+                <configuration>
+                    <argLine>${surefireArgLine}</argLine>
+                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -299,14 +263,14 @@
                 </plugins>
             </build>
             <distributionManagement>
-            <snapshotRepository>
-                <id>ossrh</id>
-                <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            </snapshotRepository>
-            <repository>
-                <id>ossrh</id>
-                <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-            </repository>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+                <repository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
             </distributionManagement>
         </profile>
     </profiles>
