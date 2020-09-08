@@ -22,6 +22,7 @@ pipeline {
 
           environment {
             SCANNER_HOME = tool 'sonar-scanner'
+            pathSonarProperties = 'sonar-project.properties'
           }
             steps {
                 withSonarQubeEnv('sonardocker') {
