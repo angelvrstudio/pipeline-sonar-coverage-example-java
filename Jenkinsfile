@@ -1,22 +1,24 @@
 pipeline {
     agent any
     tools {
-        maven 'apache-maven-3.5.0'
-
-
+         jdk 'JAVA_HOME'
+         maven 'MAVEN_LATEST'
+    }
+    environment {
+            JAVA_HOME = "${jdk}"
     }
 
 
     stages {
         stage('Compile Stage') {
             steps {
-                bat 'mvn clean compile'
+                sh 'mvn clean compile'
             }
         }
 
         stage('Test') {
             steps {
-                bat 'mvn clean install -U'
+                sh 'mvn clean install -U'
             }
         }
 
@@ -29,7 +31,7 @@ pipeline {
                     script {
 
                      def scannerHome = tool 'sonar-scanner'
-                     bat "${scannerHome}/bin/sonar-scanner"
+                     sh "${scannerHome}/bin/sonar-scanner"
 
                      }
                 }
