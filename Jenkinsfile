@@ -2,8 +2,11 @@ pipeline {
     agent any
     tools {
         maven 'apache-maven-3.5.0'
+        jdk 'jdk11'
     }
-
+    environment {
+            JAVA_HOME = "${jdk}"
+        }
 
     stages {
         stage('Compile Stage') {
@@ -27,9 +30,8 @@ pipeline {
             steps {
                 withSonarQubeEnv('sonardocker') {
 
-                     bat 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=0b3820907f5ad45b045e6073a51c933e38713cb3'
-
-
+                     def scannerHome = tool 'sonar-scanner'
+                     bat "${scannerHome}/bin/sonar-scanner"
                 }
             }
         }
