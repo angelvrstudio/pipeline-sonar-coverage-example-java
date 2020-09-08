@@ -19,10 +19,10 @@ pipeline {
         }
 
         stage('QA-Sonar') {
-          pathSonarProperties = 'sonar-project.properties'
+
           environment {
             SCANNER_HOME = tool 'sonar-scanner'
-
+            pathSonarProperties = 'sonar-project.properties'
           }
             steps {
                 withSonarQubeEnv('sonardocker') {
