@@ -16,7 +16,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                bat 'mvn test'
+                bat 'mvn clean install -U'
             }
         }
 
@@ -29,7 +29,7 @@ pipeline {
                     script {
 
                      def scannerHome = tool 'sonar-scanner'
-                     sh "${scannerHome}/bin/sonar-scanner"
+                     bat "${scannerHome}/bin/sonar-scanner"
 
                      }
                 }
