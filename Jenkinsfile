@@ -2,7 +2,8 @@ pipeline {
     agent any
     tools {
         maven 'apache-maven-3.5.0'
-        
+        jdk 'JAVA_HOME'
+
     }
     environment {
             JAVA_HOME = "${jdk}"
