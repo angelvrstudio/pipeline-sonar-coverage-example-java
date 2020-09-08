@@ -22,11 +22,11 @@ pipeline {
 
           environment {
             SCANNER_HOME = tool 'sonar-scanner'
-            pathSonarProperties = 'sonar-project.properties'
+
           }
             steps {
                 withSonarQubeEnv('sonardocker') {
-
+                     pathSonarProperties = 'sonar-project.properties'
                      bat 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=0b3820907f5ad45b045e6073a51c933e38713cb3'
 
 
