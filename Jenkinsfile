@@ -29,7 +29,7 @@ pipeline {
                     script {
 
                      def scannerHome = tool 'sonar-scanner'
-                     bat "${scannerHome}/bin/sonar-scanner"
+                     sh "${scannerHome}/bin/sonar-scanner"
 
                      }
                 }

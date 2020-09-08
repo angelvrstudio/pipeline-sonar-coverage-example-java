@@ -190,13 +190,13 @@
                     <propertyName>surefireArgLine</propertyName>
                 </configuration>
             </plugin>
-            <!--          <plugin>
+                     <plugin>
                           <artifactId>maven-surefire-plugin</artifactId>
-                          <version>2.21.0</version>
+                          <version>2.22.2</version>
                           <configuration>
                               <argLine>${surefireArgLine}</argLine>
                           </configuration>
-               </plugin>  -->
+               </plugin>
         </plugins>
               </build>
 
