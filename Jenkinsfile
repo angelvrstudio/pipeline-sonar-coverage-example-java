@@ -26,8 +26,12 @@ pipeline {
             steps {
                 withSonarQubeEnv('sonardocker') {
 
+                    script {
+
                      def scannerHome = tool 'sonar-scanner'
                      bat "${scannerHome}/bin/sonar-scanner"
+
+                     }
                 }
             }
         }
