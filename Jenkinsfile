@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {
         maven 'apache-maven-3.5.0'
-        jdk 'jdk10'
+        
     }
     environment {
             JAVA_HOME = "${jdk}"
@@ -23,7 +23,7 @@ pipeline {
 
         stage('QA-Sonar') {
 
-         
+
             steps {
                 withSonarQubeEnv('sonardocker') {
 
