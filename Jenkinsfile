@@ -5,9 +5,7 @@ pipeline {
 
 
     }
-    environment {
-            JAVA_HOME = "${jdk}"
-        }
+    
 
     stages {
         stage('Compile Stage') {
